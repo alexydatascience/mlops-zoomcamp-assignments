@@ -1,3 +1,4 @@
 data/
+prepared_data/
 .ipynb_checkpoints
-.bin
+.binprepared_data
