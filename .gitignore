@@ -3,3 +3,4 @@ prepared_data/
 .ipynb_checkpoints
 .binprepared_data
 .vscode
+*.db
