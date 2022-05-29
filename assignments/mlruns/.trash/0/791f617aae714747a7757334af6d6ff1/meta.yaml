@@ -1,0 +1,15 @@
+artifact_uri: file:///home/alex/Projects/mlops-zoomcamp/assignments/mlruns/0/791f617aae714747a7757334af6d6ff1/artifacts
+end_time: 1653769145393
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 791f617aae714747a7757334af6d6ff1
+run_uuid: 791f617aae714747a7757334af6d6ff1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1653769126332
+status: 3
+tags: []
+user_id: alex

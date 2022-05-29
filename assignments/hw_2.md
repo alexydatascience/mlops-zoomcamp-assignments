@@ -10,4 +10,25 @@ cd prepared_data/
 ls -1q | wc -l
 4
 ```
-Q3. Train a model with autolog
+# Q3. Train a model with autolog
+```
+cd assignments/
+python train.py --data_path ../prepared_data/
+```
+```
+mlflow ui
+```
+# Q4. Launch the tracking server locally
+```
+mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts
+```
+# Q5. Tune the hyperparameters of the model
+```
+cd assignments/
+python hpo.py --data_path ../prepared_data/
+```
+```
+mlflow ui
+```
+ans: 6.628
+# Q6. Promote the best model to the model registry
