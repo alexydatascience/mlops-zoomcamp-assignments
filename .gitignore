@@ -1,8 +1,11 @@
 data/
 prepared_data/
 .ipynb_checkpoints
+<<<<<<< HEAD
 .binprepared_data
 .vscode
 *.db
 mlruns
 artifacts
+.bin
+>>>>>>> 3faebe94d595e701e3f09fcc6ea07c311f5573e1
