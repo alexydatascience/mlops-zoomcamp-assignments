@@ -79,12 +79,14 @@ def get_paths(date=None):
     train_date = (current_date - relativedelta(months=2)).strftime('%Y-%m')
     valid_date = (current_date - relativedelta(months=1)).strftime('%Y-%m')
 
-    train_path = f'fhv_tripdata_{train_date}.parquet'
-    valid_path = f'fhv_tripdata_{valid_date}.parquet'
+    train_path = f'data/fhv_tripdata_{train_date}.parquet'
+    valid_path = f'data/fhv_tripdata_{valid_date}.parquet'
+
+    return train_path, valid_path
 
 
 @flow
-def main(date="2021-03-15"):
+def main(date="2021-08-15"):
     train_path, val_path = get_paths(date).result()
 
     categorical = ['PUlocationID', 'DOlocationID']
