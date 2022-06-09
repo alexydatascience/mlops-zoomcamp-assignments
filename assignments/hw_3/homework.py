@@ -6,6 +6,9 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
 from prefect import flow, task, get_run_logger
+from prefect.deployments import DeploymentSpec
+from prefect.orion.schemas.schedules import CronSchedule
+from prefect.flow_runners import SubprocessFlowRunner
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -30,7 +33,7 @@ def prepare_features(df, categorical, train=True):
         logger.info(f"The mean duration of training is {mean_duration}")
     else:
         logger.info(f"The mean duration of validation is {mean_duration}")
-    
+
     df[categorical] = df[categorical].fillna(-1).astype('int').astype('str')
     return df
 
@@ -41,7 +44,7 @@ def train_model(df, categorical):
 
     train_dicts = df[categorical].to_dict(orient='records')
     dv = DictVectorizer()
-    X_train = dv.fit_transform(train_dicts) 
+    X_train = dv.fit_transform(train_dicts)
     y_train = df.duration.values
 
     logger.info(f"The shape of X_train is {X_train.shape}")
@@ -76,7 +79,7 @@ def get_paths(date=None):
         current_date = datetime.today()
     else:
         current_date = datetime.strptime(date, "%Y-%m-%d")
-    
+
     train_date = (current_date - relativedelta(months=2)).strftime('%Y-%m')
     valid_date = (current_date - relativedelta(months=1)).strftime('%Y-%m')
 
@@ -108,4 +111,12 @@ def main(date="2021-08-15"):
     run_model(df_val_processed, categorical, dv, lr)
 
 
-main()
+DeploymentSpec(
+    flow=main,
+    name="hw_3_model_training",
+    schedule=CronSchedule(
+        cron="0 9  * *",
+        timezone="America/New_York"),
+    flow_runner=SubprocessFlowRunner(),
+    tags=["ml"]
+)
