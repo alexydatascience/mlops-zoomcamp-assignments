@@ -1,3 +1,4 @@
+import pickle
 import pandas as pd
 
 from sklearn.feature_extraction import DictVectorizer
@@ -99,6 +100,11 @@ def main(date="2021-08-15"):
 
     # train the model
     lr, dv = train_model(df_train_processed, categorical).result()
+    with open(f'model-{date}.bin', 'wb') as f:
+        pickle.dump(lr, f)
+    with open(f'dv-{date}.b', 'wb') as f:
+        pickle.dump(dv, f)
+
     run_model(df_val_processed, categorical, dv, lr)
 
 
