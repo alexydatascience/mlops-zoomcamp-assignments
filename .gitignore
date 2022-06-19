@@ -16,3 +16,5 @@ artifacts
 .venv
 venv
 .idea
+**/artifacts/
+**/models/
