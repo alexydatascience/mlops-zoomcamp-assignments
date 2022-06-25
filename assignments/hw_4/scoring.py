@@ -15,7 +15,7 @@ def read_data(filename):
     df = df[(df.duration >= 1) & (df.duration <= 60)].copy()
 
     df[CATEGORICAL] = df[CATEGORICAL].fillna(-1).astype('int').astype('str')
-    
+
     return df
 
 
